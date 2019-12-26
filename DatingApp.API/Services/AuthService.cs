@@ -74,7 +74,7 @@ namespace DatingApp.API.Services
 
                             ClientId = _configuration["IdentityClientId"],
                             ClientSecret = _configuration["IdentityClientSecret"],
-                            Scope = "DatingApp.API",
+                            Scope = "openid profile email DatingApp.API",
                             UserName = loginCommand.Username,
                             Password = loginCommand.Password
                         });

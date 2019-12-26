@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.API.Controllers
 {
     [Route("api/[controller]")]
-    //[ApiController]
+    [ApiController]
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;

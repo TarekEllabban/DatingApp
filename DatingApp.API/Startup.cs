@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.DBContext;
+using DatingApp.API.Helpers;
 using DatingApp.API.IServices;
 using DatingApp.API.Repositories;
 using DatingApp.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +40,7 @@ namespace DatingApp.API
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddHttpClient<IAuthService, AuthService>(client =>
             {
-                client.BaseAddress = new Uri(Configuration["IdentityBaseUrl"]);
+                client.BaseAddress = new Uri(Configuration.GetValue<string>("IdentityBaseUrl", string.Empty));
             });
 
             //https://codebrains.io/how-to-add-jwt-authentication-to-asp-net-core-api-with-identityserver-4-part-1/
@@ -82,6 +85,13 @@ namespace DatingApp.API
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 //app.UseHsts();
+                app.UseExceptionHandler(builder => {
+                    builder.Run( async context => {
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
+                        context.Response.AddApplicationError(error.Error.Message);
+                        await context.Response.WriteAsync(error.Error.Message);
+                    });
+                });
             }
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             //app.UseHttpsRedirection();
