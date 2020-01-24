@@ -1,8 +1,6 @@
 ﻿using DatingApp.API.DBContext;
-using DatingApp.API.IServices;
+using DatingApp.API.IRepositories;
 using DatingApp.API.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

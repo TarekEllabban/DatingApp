@@ -8,6 +8,11 @@ namespace DatingApp.API.Commands
 {
     public class RegisterCommand
     {
+        public RegisterCommand(string username, string password)
+        {
+            this.Username = username;
+            this.Password = password;
+        }
         [Required]
         public string Username { get; set; }
         [Required]

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DatingApp.API.IServices
+namespace DatingApp.API.IRepositories
 {
     public interface IUserRepository
     {

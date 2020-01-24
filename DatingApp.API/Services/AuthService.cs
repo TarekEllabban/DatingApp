@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DatingApp.API.Commands;
+using DatingApp.API.IRepositories;
 using DatingApp.API.IServices;
 using DatingApp.API.Models;
 using DatingApp.API.ViewModels;
