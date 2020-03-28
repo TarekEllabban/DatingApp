@@ -17,15 +17,15 @@ namespace DatingApp.API.Services
             this._datingRepository = datingRepository;
             this._mapper = mapper;
         }
-        public async Task<UserViewModel> GetUser(int id)
+        public async Task<UserDetailsViewModel> GetUser(int id)
         {
             var user = await this._datingRepository.GetUser(id);
-            return _mapper.Map<UserViewModel>(user);
+            return _mapper.Map<UserDetailsViewModel>(user);
         }
-        public async Task<IEnumerable<UserDetailsViewModel>> GetUsers()
+        public async Task<IEnumerable<UserViewModel>> GetUsers()
         {
             var users = await this._datingRepository.GetUsers();
-            return _mapper.Map<List<UserDetailsViewModel>>(users);
+            return _mapper.Map<List<UserViewModel>>(users);
         }
     }
 }
