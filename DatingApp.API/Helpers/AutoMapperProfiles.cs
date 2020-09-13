@@ -30,6 +30,7 @@ namespace DatingApp.API.Helpers
                     {
                         options.MapFrom(src => src.DateOfBirth.Age());
                     });
+            CreateMap<UserForUpdateViewModel, User>();
         }
     }
 }

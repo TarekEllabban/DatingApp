@@ -31,6 +31,11 @@ namespace DatingApp.API.Repositories
             return await this._datingContext.Users.Where(u => u.Id == id).Include(u => u.Photos).FirstOrDefaultAsync();
         }
 
+        public async Task<User> GetUser(string username)
+        {
+            return await this._datingContext.Users.Where(u => u.UserName == username).Include(u => u.Photos).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             return await this._datingContext.Users.Include(u => u.Photos).ToListAsync();
